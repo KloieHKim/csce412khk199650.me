@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pure CSS Lily</title>
+  <style>
+    :root{
+      --bg: hsl(220 25% 8%);
+      --text: hsl(0 0% 98%);
+      --petal-hue: 325;                 /* change this for color */
+      --petal-light-1: hsl(var(--petal-hue) 90% 98%);
+      --petal-light-2: hsl(var(--petal-hue) 82% 84%);
+      --petal-mid:     hsl(calc(var(--petal-hue) - 6) 70% 64%);
+      --petal-edge:    hsl(calc(var(--petal-hue) - 10) 70% 42%);
+      --center-1:      hsl(48 95% 72%);
+      --center-2:      hsl(38 90% 46%);
+      --stem:          hsl(130 45% 32%);
+      --leaf:          hsl(130 42% 28%);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 70% 10%, hsl(220 35% 16%), var(--bg));
+      display:grid; place-items:center;
+    }
+
+    .scene{
+      position:relative;
+      width:min(92vw, 720px);
+      aspect-ratio: 1 / 1.1;
+      display:grid; place-items:center;
+      filter: drop-shadow(0 30px 50px hsl(0 0% 0% / .45));
+    }
+
+    /* Ground shadow */
+    .shadow{
+      position:absolute; bottom:2%; left:50%; translate:-50% 0;
+      width:40%; height:24px; border-radius:50%;
+      background:hsl(0 0% 0% / .35);
+      filter: blur(6px);
+    }
+
+    .stem{
+      position:absolute; bottom:8%; left:50%; translate:-50% 0;
+      width:10px; height:48%; border-radius:999px;
+      background: linear-gradient(180deg, hsl(130 50% 38%), var(--stem));
+      transform-origin: 50% 100%;
+      animation: sway 6s ease-in-out infinite;
+    }
+
+    .leaf{
+      position:absolute; bottom:30%; left:50%;
+      width:200px; height:110px; translate:-60% 0;
+      background: radial-gradient(120% 90% at 30% 40%, hsl(130 55% 40%), var(--leaf));
+      border-radius: 200px 20px 200px 20px / 120px 14px 120px 14px; /* teardrop */
+      transform: rotate(-18deg);
+      box-shadow: inset 0 0 0 1px hsl(0 0% 100% / .08);
+      animation: leafLift 6.2s ease-in-out infinite;
+    }
+    .leaf.right{ translate:5% 10%; transform: rotate(22deg) scaleX(-1); }
+
+    .flower{
+      position:absolute; bottom:40%; left:50%; translate:-50% 0;
+      width: 420px; aspect-ratio: 1/1;
+      display:grid; place-items:center;
+      transform-origin: 50% 70%;
+      animation: sway 6.2s ease-in-out infinite;
+    }
+
+    /* Petal base style: lily = tapered Bézier-ish via clip-path */
+    .petal{
+      position:absolute; inset:0;
+      margin:auto; width: 160px; height: 280px;  /* overall petal size */
+      /* Gradient gives inner glow toward the tip */
+      background:
+        radial-gradient(70% 55% at 50% 22%, var(--petal-light-1), transparent 60%),
+        radial-gradient(60% 70% at 50% 65%, var(--petal-light-2), transparent 70%),
+        linear-gradient(180deg, var(--petal-mid), var(--petal-edge));
+      /* Lily silhouette */
+      clip-path: path("M 80 280 C 40 220 28 150 46 96 C 56 64 74 40 80 16 C 86 40 104 64 114 96 C 132 150 120 220 80 280 Z");
+      box-shadow:
+        inset 0 0 0 1px hsl(0 0% 100% / .22),
+        inset 0 -30px 60px hsl(0 0% 0% / .25);
+      transform-origin: 50% 85%;
+      opacity:0; scale:.1; rotate:-8deg;
+      animation: bloom 1400ms cubic-bezier(.2,.8,.2,1) forwards;
+    }
+
+    /* Create 6 petals rotated around the center */
+    .petal:nth-child(1){ transform: translateY(6px) rotate(  0deg);  animation-delay: 0ms; }
+    .petal:nth-child(2){ transform: translateY(6px) rotate( 60deg);  animation-delay: 90ms; }
+    .petal:nth-child(3){ transform: translateY(6px) rotate(120deg);  animation-delay: 180ms; }
+    .petal:nth-child(4){ transform: translateY(6px) rotate(180deg);  animation-delay: 270ms; }
+    .petal:nth-child(5){ transform: translateY(6px) rotate(240deg);  animation-delay: 360ms; }
+    .petal:nth-child(6){ transform: translateY(6px) rotate(300deg);  animation-delay: 450ms; }
+
+    /* gentle curl for every other petal */
+    .petal:nth-child(odd){ filter: saturate(1.05) brightness(1.02); }
+
+    /* Midrib highlight using a pseudo-element */
+    .petal::after{
+      content:""; position:absolute; left:0; right:0; top:6%; bottom:6%; margin:auto;
+      width:2px; border-radius:2px;
+      background: linear-gradient(180deg, hsl(0 0% 100% / .55), hsl(0 0% 100% / 0));
+      opacity:.45; filter: blur(.3px);
+    }
+
+    /* Center (pistil) */
+    .center{
+      position:absolute; inset:0; margin:auto; width: 85px; height:85px; border-radius:50%;
+      background: radial-gradient(60% 60% at 45% 42%, var(--center-1), var(--center-2));
+      box-shadow: 0 2px 0 hsl(35 80% 35%) inset, 0 0 20px hsl(48 90% 55% / .35);
+      animation: pop 900ms 320ms cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    /* Stamens (filaments + anthers) */
+    .stamen{
+      position:absolute; inset:0; margin:auto; width: 220px; height:220px;
+      pointer-events:none;
+    }
+    .filament{
+      position:absolute; left:50%; top:50%; width:2px; height:95px; translate:-50% -88%;
+      background: linear-gradient(180deg, hsl(48 90% 75%), hsl(48 80% 45%));
+      transform-origin: 50% 100%;
+      border-radius: 2px;
+    }
+    .anther{
+      position:absolute; left:50%; top: -8px; translate:-50% 0;
+      width:20px; height:10px; border-radius: 10px 10px 8px 8px;
+      background: linear-gradient(180deg, hsl(12 70% 45%), hsl(12 80% 38%));
+      box-shadow: 0 1px 2px hsl(0 0% 0% / .35);
+    }
+
+    /* Place 6 stamens around */
+    .stamen .s1{ transform: rotate(  0deg) translateY(10px); }
+    .stamen .s2{ transform: rotate( 60deg) translateY(10px); }
+    .stamen .s3{ transform: rotate(120deg) translateY(10px); }
+    .stamen .s4{ transform: rotate(180deg) translateY(10px); }
+    .stamen .s5{ transform: rotate(240deg) translateY(10px); }
+    .stamen .s6{ transform: rotate(300deg) translateY(10px); }
+
+    @keyframes bloom{
+      0%{ opacity:0; scale:.1; rotate:-8deg }
+      70%{ opacity:1; scale:1.06; rotate:0deg }
+      100%{ opacity:1; scale:1; rotate:0deg }
+    }
+    @keyframes pop{ 0%{scale:.1; opacity:0} 70%{scale:1.06; opacity:1} 100%{scale:1; opacity:1} }
+    @keyframes sway{ 0%{ rotate:-2deg } 50%{ rotate:2deg } 100%{ rotate:-2deg } }
+    @keyframes leafLift{ 0%{ transform: rotate(-18deg) } 50%{ transform: rotate(-12deg) } 100%{ transform: rotate(-18deg) } }
+
+    /* Helper label */
+    .label{ position:absolute; bottom:4%; left:50%; translate:-50% 0; font-size:12px; opacity:.75 }
+
+    /* Optional: reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .petal, .center, .flower, .stem, .leaf{ animation: none!important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" role="img" aria-label="A blooming lily made with only HTML and CSS">
+    <div class="shadow" aria-hidden="true"></div>
+    <div class="stem" aria-hidden="true"></div>
+    <div class="leaf" aria-hidden="true"></div>
+    <div class="leaf right" aria-hidden="true"></div>
+
+    <div class="flower">
+      <!-- six lily petals -->
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+
+      <!-- center + stamens -->
+      <div class="center"></div>
+      <div class="stamen">
+        <div class="filament s1"><div class="anther"></div></div>
+        <div class="filament s2"><div class="anther"></div></div>
+        <div class="filament s3"><div class="anther"></div></div>
+        <div class="filament s4"><div class="anther"></div></div>
+        <div class="filament s5"><div class="anther"></div></div>
+        <div class="filament s6"><div class="anther"></div></div>
+      </div>
+    </div>
+
+    <div class="label">PROMPT: can you make a lily with just html and css?</div>
+  </div>
+</body>
+</html>

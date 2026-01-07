@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kloie Kim - Home</title>
+    <meta name="description" content="Kloie Kim - CS & Neuroscience student. Projects, experience, and contact."> <!-- this line is unnecessary maybe?-->
+    <link id="mainStyleSheet" rel="stylesheet" href="indexStyles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="wrap">
+          <nav>
+            <div class="nav-links" role="navigation" aria-label="Primary">
+              <a class="chip" href="#home" >Home</a>
+              <a class="chip" href="#about">About</a>
+              <a class="chip" href="#learnmore">Learn More</a>
+            </div>
+            <button id="theme-toggle" class="btn" onclick="toggleStyleSheet()" title="Toggle theme">switch theme!</button>
+          </nav>
+        </div>
+      </header>
+  <main id="home" class="wrap">
+    <!-- hero, so gridding -->
+    <section class="section hero">
+      <figure>
+        <img src="Portrait.jpeg" alt="Portrait of Kloie Kim" width="600" height="800" loading="lazy" />
+      </figure>
+      <div>
+        <h1>Hello! My name is Kloie Kim.</h1>
+        <p class="muted"> I love cats, eating, reading, and making art! I also am very passionate about farming minutes on spotify. Right now I'm learning how to play the guitar, make matcha at home, and how to stop my stomach from hurting all the time.</p>
+        <div class="row" style="margin-top: .5rem">
+          <a class="btn primary" href="portfolio.html">See my portfolio!</a>
+          <!-- <a class="btn" href="resume.pdf">Resume</a> -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2>A little bit about me!</h2>
+        <p>
+            I&apos;m Kloie Kim, a junior at Texas A&amp;M University pursuing a double degree in Neuroscience and Computer Science. My academic journey began with a fascination for how the brain encodes patterns, adapts to stress, and shapes behavior, and has since grown into an equal fascination with how software systems process data, automate decisions, and enable human creativity. The intersection between biological and computational intelligence guides both my studies and the projects I take on.  
+    
+            At Texas A&amp;M, I serve as a Teaching Assistant for introductory programming (python) and neuroscience classes, where I enjoy encouraging students to approach problems with both curiosity and persistence. </p>
+            
+        <p>
+
+        </p>
+        <!-- <p>I&apos;m also part of the Circadian Circuits Lab, where I co-developed an open-source Python tool for analyzing 100+ hours of rodent behavioral data. My work has focused on extending the tool&apos;s functionality for social behavior labeling and future Markov chain analysis, combining technical problem-solving while contributing to the field of neuroscience research. </p>
+                
+        <p>Beyond school, I recently interned at American Airlines on the Privacy Technology team. I redesigned a major user interface in Angular/TypeScript to improve usability and built a backend Java Spring Boot service that automated compliance alerts, helping internal teams work faster and more reliably. I also collaborated on a group project developing a data governance dashboard, where I designed ETL workflows and built insights for enterprise users. </p>
+                 -->
+        <h3>Contact: <a href="mailto:kloiehkim@gmail.com">kloiehkim@gmail.com</a></h3> 
+        
+    </section>
+    <section id="learnmore" class="section hero">
+        <figure>
+            <img src="learning.JPG" alt="Learn More Logo will go here" width="400" height="400" loading="lazy" /> 
+        </figure>
+        <div>
+            <h2>Learn More</h2>
+            <a class="btn primary" href="qualifications.html">Qualifications</a>
+            <a class="btn primary" href="service.html">Service</a>
+            <a class="btn primary" href="genai.html">Gen AI</a>
+        </div>
+    </section>
+  </main>
+    
+  
+  <!-- <p>
+      <a href="portfolio.html">Technical Portfolio</href>
+  </p>
+  <p>
+      <a href="qualifications.html">Qualifications</href>
+  </p>
+  <p>
+      <a href="service.html">Service</href>
+  </p>
+  <p>
+      <a href="genai.html">Gen AI</href>
+  </p> -->
+
+  <!-- logic for theme switch should go here eventualy?-->
+  <script src="functions.js"></script>
+
+  </body>
+  </html>

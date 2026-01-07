@@ -1,0 +1,54 @@
+ /* this will set color scheme and size preferences */
+:root{
+    color-scheme: light;
+    --bg: #d8e6ff; --text: #0b0b0b; --muted:#4b566d;
+    --surface:#f7f8fb; --border:#6598ff; --accent:#5b8cff;
+    --max: 72ch; --space: 1rem; --radius: 14px;
+    --step-0: clamp(1rem, 0.92rem + 0.4vw, 1.1rem); 
+    --step-1: clamp(1.1rem, 1rem + 0.8vw, 1.25rem);
+    --step-2: clamp(1.4rem, 1.1rem + 1.6vw, 1.8rem);
+    --step-3: clamp(2rem, 1.4rem + 3vw, 3rem);
+  }
+  /* default first values, clamp == (minimum, preferred, maximum)
+  step-0: body text, step-1: subtitles, step-2: section titles, step-3: main title */
+
+
+/* --- Base styles --- */
+*,*::before,*::after{ box-sizing: border-box; } /* this will set box-sizing to border-box for all elements,  *,*::before,*::after applies to every element  */
+html{ font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; } /* this will set the base font size, line height, and font family for the entire document */
+body{ margin:0; background:var(--bg); color:var(--text); }
+img{ max-width:100%; height:auto; border-radius: var(--radius); }
+a{ color: var(--accent); text-underline-offset:.15em; }
+.wrap{ width: min(var(--max), 100% - 0.5rem);
+  margin-inline: auto; } /* was 2rem */
+.section{ padding-block: clamp(0.5rem, 2vw, 2rem); }
+.muted{ color: var(--muted); }
+
+header{
+    position: sticky; top: 0; z-index: 10; /* stay on top when scrolling */
+    /* had to add bc the header was straight up invisible :( */
+    backdrop-filter: blur(8px);
+    background: color-mix(in srgb, var(--bg) 82%, transparent); 
+    border-bottom: 1px solid var(--border); /* separates header from content */
+} /* this will set the header to be sticky and have a border at the bottom */
+
+nav{ display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:.75rem 0; } /* this will set the navigation bar to be a flex container with space between items */
+.nav-links{ display:flex; flex-wrap:wrap; gap:.25rem; } /* this will set the nav links to be a flex container, wraps + has a gap between */
+.chip{ display:inline-flex; align-items:center; padding:.55rem .9rem; border:1px solid var(--border); border-radius:999px; background:var(--bg); }
+.chip[aria-current="page"]{ background:var(--surface); }
+
+/* buttons */
+.btn{ display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1rem; border-radius:999px; border:1px solid var(--border); background:var(--bg); cursor:pointer; margin-bottom: 0.5rem;}
+.btn.primary{ background:var(--accent); color:white; border-color:transparent; }
+
+/* typography, will set h1 and h2 with clamp as well */
+h1{ font-size: var(--step-3); line-height:1.15; letter-spacing:-0.01em; margin:0 0 .5rem 0; }
+h2{ font-size: var(--step-2); line-height:1.2; letter-spacing:-0.005em; margin:0 0 1rem 0; }
+
+
+/* hero, hero will put img and text next to eachother (grid cells) */
+.hero{ display:grid;   gap: clamp(.5rem, 1vw, .75rem); align-items:center; padding-inline: 0.5rem;}
+@media (min-width: 820px){
+  .hero{ grid-template-columns: 1.1fr .9fr; }
+}
+.hero img{ border: 1px solid var(--border); }

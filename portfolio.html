@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kloie Kim - Portfolio</title>
+    <link id="mainStyleSheet" rel="stylesheet" href="indexStyles.css">
+</head>
+<body>
+    <header>
+        <div class="wrap">
+          <nav>
+            <div class="nav-links" role="navigation" aria-label="Primary">
+                <a class="chip" href="index.html">Home</a>
+                <a class="chip" href="https://github.com/KloieHKim">GitHub</a>
+            </div>
+            <button id="theme-toggle" class="btn" onclick="toggleStyleSheet()" title="Toggle theme">switch theme!</button>
+          </nav>
+        </div>
+    </header>
+
+
+    <main id="cbas" class="wrap">
+        <section class="section hero">
+            <figure>
+                <img src="CBAS.jpeg" alt="CBASv3 Logo will go here" width="400" height="400" loading="lazy" />
+            </figure>
+            <div>
+                <h1>CBASv3</h1>
+                <p class="muted">Extending CBASv2 (Circadian Behavioral Analysis Software) to enable automatic detection and labeling of social behaviors in mice (e.g., grooming, chasing, aggression) for circadian rhythm research. Aiming to eliminate manual labeling, streamlining experiments and increasing reproducibility for ongoing neuroscience experiments.</p>
+                <div class="row" style="margin-top: .5rem">
+                <a class="btn primary" href="https://github.com/jones-lab-tamu/CBAS/blob/main/README.md">CBASv2</a>
+                </div>
+
+            </div>
+        </section>
+
+        <main id="american" class="wrap">
+            <section class="section hero">
+                <figure>
+                    <img src="AApic.jpeg" alt="A picture of me" width="400" height="400" loading="lazy" />
+                </figure>
+                <div>
+                    <h1>American Airlines</h1>
+                    <p class="muted">Privacy Portal: Redesigned Erasure Request page, improving user experience by displaying and organizing JSON audit trail for easy access to data and implemented dynamic overdue/failed system alerts; deployed to production for 30+ internal users (Angular, TypeScript, HTML, CSS).
+                        Built backend Audit Service end-to-end to auto-detect overdue systems and send notifications via Microsoft Graph API, reducing compliance response times by 50%+ for 100+ internal users (Java, Spring Boot).</p>
+                    <div class="row" style="margin-top: .5rem">
+                    <a class="btn primary" href="https://www.aa.com">American Airlines</a>
+                    </div>  
+                </div>
+            </section>
+
+        <main id="joneslab" class="wrap">
+            <section class="section hero">
+                <figure>
+                    <img src="JonesLab.png" alt="Jones Lab Logo" width="400" height="400" loading="lazy" />
+                </figure>
+                <div>
+                    <h1>Jones Lab</h1>
+                    <p class="muted">Applying Markov chain analysis to model state transitions in circadian behavioral patterns, uncovering probabilistic dynamics in animal activity data.</p>
+                    <a href="https://www.cell.com/cell-reports/fulltext/S2211-1247%2824%2901221-X">Related reading materials if you're curious!</a>
+                    <div class="row" style="margin-top: .5rem">
+                    <a class="btn primary" href="https://jones-lab.org">Jones Lab</a>
+                    </div>
+                </div>
+            </section>
+
+        <main id="howdyhack" class="wrap">
+            <section class="section hero">
+                <figure>
+                    <img src="howdyhack24.jpg" alt="Howdy Hack Logo will go here" width="400" height="400" loading="lazy" />
+                </figure>
+                <div>
+                    <h1>Howdy Hack 2024</h1>
+                    <p class="muted">Wild West shoot out - Developed a single-player dueling game in Python with Pygame, featuring custom-designed pixel assets, fluid character animations, and responsive gameplay mechanics.
+                        Implemented a randomized AI opponent to simulate unpredictable shootout encounters, enhancing replayability.
+                        Awarded Honorable Mention at HowdyHack24 for creativity, design quality, and engaging user experience. </p>
+                    <div class="row" style="margin-top: .5rem">
+                    <a class="btn primary" href="https://hh25.tamuhack.org">Howdy Hack</a>
+                    </div>
+                </div>
+            </section>
+    </main>
+    <script src="functions.js"></script>
+
+    <!-- <p>
+        need to add imgs
+        <ul>
+            <li> 
+                <img src="CBASv3.png" alt="CBASv3 Logo will go here" width="200" height="200">
+            </li>
+            <a href="https://github.com/jones-lab-tamu/CBASv3">CBASv2, v3 is not up yet!</a>
+            <li>Project 1: CBASv3 - Extending CBASv2 (Circadian Behavioral Analysis Software) to enable automatic detection and labeling of social
+                behaviors in mice (e.g., grooming, chasing, aggression) for circadian rhythm research. Aiming to eliminate manual labeling, streamlining experiments and increasing reproducibility for ongoing
+                neuroscience experiments.</li>
+            
+            <li> 
+                <img src="HowdyHack24.png" alt="Howdy Hack Logo will go here" width="200" height="200">
+            </li>
+            <a href="https://hh25.tamuhack.org">Howdy Hack</a>
+            <li>Project 2: Wild West shoot out - Developed a single-player dueling game in Python with Pygame, featuring custom-designed pixel assets, fluid
+                character animations, and responsive gameplay mechanics.
+                Implemented a randomized AI opponent to simulate unpredictable shootout encounters, enhancing replayability.
+                Awarded Honorable Mention at HowdyHack24 for creativity, design quality, and engaging user experience. </li>
+            <li> 
+                <img src="JonesLab.png" alt="Jones Lab Logo" width="200" height="200">
+            </li>
+            <a href="https://jones-lab.org">Jones Lab</a>
+            <a href="https://www.cell.com/cell-reports/fulltext/S2211-1247%2824%2901221-X">Related reading materials if you're curious!</a>
+            <li>research 3: Applying Markov chain analysis to model state transitions in circadian
+                behavioral patterns, uncovering probabilistic dynamics in animal activity data.</li>
+
+            <li>
+                <img src="AApic.jpeg" alt="A picture of me" width="200" height="200">
+            </li>
+            <a href="https://www.aa.com">American Airlines</a>
+            <li>American Airlines -- Privacy Portal: Redesigned Erasure Request page, improving user experience by displaying and organizing JSON audit trail for easy access to data and implemented dynamic overdue/failed system alerts; deployed to production for 30+ internal users (Angular, TypeScript, HTML, CSS).
+                Built backend Audit Service end-to-end to auto-detect overdue systems and send notifications via Microsoft Graph API, reducing compliance response times by 50%+ for 100+ internal users (Java, Spring Boot).</li>
+            <li>Future: ...still deciding</li>
+        </ul>
+     -->
+</body>
+</html>
